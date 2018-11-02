@@ -14,7 +14,7 @@ spec:
       # One and only one version must be marked as the storage version.
       storage: true
   # either Namespaced or Cluster
-  scope: Namespaced
+  scope: Cluster
   subresources:
     # enable spec/status
     status: {}
@@ -25,3 +25,19 @@ spec:
     singular: clusterversion
     # kind is normally the CamelCased singular type. Your resource manifests use this.
     kind: ClusterVersion
+  additionalPrinterColumns:
+  - name: Version
+    type: string
+    JSONPath: .status.current.version
+  - name: Available
+    type: string
+    JSONPath: .status.conditions[?(@.type=="Available")].status
+  - name: Progressing
+    type: string
+    JSONPath: .status.conditions[?(@.type=="Progressing")].status
+  - name: Since
+    type: date
+    JSONPath: .status.conditions[?(@.type=="Progressing")].lastTransitionTime
+  - name: Status
+    type: string
+    JSONPath: .status.conditions[?(@.type=="Progressing")].message
