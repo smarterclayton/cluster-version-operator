@@ -67,6 +67,8 @@ For example, the Kube core operators run in runlevel 10-19 and have filenames li
 
     0000_13_cluster-kube-scheduler-operator_03_crd.yaml
 
+If you do not set a run-level, you are assigned run level 70 automatically.
+
 Assigned runlevels
 
 - 00-04 - CVO
@@ -77,6 +79,11 @@ Assigned runlevels
 - 10-19 - Kube operators (master team)
 - 20-29 - OpenShift core operators (master team)
 - 30-39 - OLM
+- 40-49 - RESERVED
+- 50 - Machine operators
+- 70 - Auto assigned run level
+- 71-98 - RESERVED
+- 99 - Run after everything else
 
 ## How do I ensure the right images get used by my manifests?
 
